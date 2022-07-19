@@ -19,10 +19,14 @@ const SignUpForm = () => {
         setFormFields({...formFields, [name]: value});
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+    }
+
     return (
         <div>
             <h1>Sign up with email and password</h1>
-            <form onSubmit={()=>{}}>
+            <form onSubmit={handleSubmit}>
                 <label>Display Name</label>
                 <input type="text" onChange={handleChange} name="displayName" value={displayName} required/>
                 
