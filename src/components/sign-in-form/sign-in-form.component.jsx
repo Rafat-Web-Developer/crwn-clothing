@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createUserDocumentFromAuth, signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
+import { createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 
@@ -18,7 +18,7 @@ const SignInForm = () => {
 
     const logGoogleUser = async () => {
         const {user} = await signInWithGooglePopup();
-        const userDocRef = await createUserDocumentFromAuth(user);
+        await createUserDocumentFromAuth(user);
     }
 
     const handleChange = (event) => {
@@ -31,7 +31,8 @@ const SignInForm = () => {
         event.preventDefault();
 
         try {
-            
+            const response = await signInAuthUserWithEmailAndPassword(email, password);
+            console.log(response);
             setFormFields(defaultFormField);
         } catch (error) {
             // console.error("User create error.", error);
