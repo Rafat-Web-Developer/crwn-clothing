@@ -35,7 +35,19 @@ const SignInForm = () => {
             console.log(response);
             setFormFields(defaultFormField);
         } catch (error) {
-            // console.error("User create error.", error);
+            switch (error.code) {
+                case 'auth/wrong-password':
+                    alert("Incorrect password!!");
+                    break;
+
+                case 'auth/user-not-found':
+                    alert("Invalid user!!");
+                    break;
+            
+                default:
+                    console.error(error);
+                    break;
+            }
         }
     }
 
