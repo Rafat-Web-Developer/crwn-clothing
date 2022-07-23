@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
+import { signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 
@@ -17,8 +17,7 @@ const SignInForm = () => {
     // console.log(formFields);
 
     const logGoogleUser = async () => {
-        const {user} = await signInWithGooglePopup();
-        createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
     }
 
     const handleChange = (event) => {
